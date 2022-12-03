@@ -22,7 +22,7 @@ farmer = load_url("https://assets7.lottiefiles.com/packages/lf20_sgn7zslb.json")
 
 
 # --- Load The Model ---
-recommender = pickle.load(open('D:\Rahul\Deployed_Projects\Crop_Recommendation_System\CropRecommender.sav','rb'))
+recommender = pickle.load(open('CropRecommender.sav','rb'))
 
 # --- Function that performs prediction ---
 
