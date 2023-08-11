@@ -46,6 +46,7 @@ def main():
             r = st.radio("Are you an EV customer", ("No", "Yes"))
             k = st.radio("Do you have a strong preference for 100% green electricity?", ("No", "Yes"))
             temperature = st.number_input("What is your monthly consumption?", min_value=0, max_value=100)
+            humidity = st.radio("Are you an existing BG customer?", ("No", "Yes"))
             # Additional question for existing BG customers
             if humidity == "Yes":
                 bg_customer_reference = st.text_input("Please enter your BG account number:")
@@ -64,11 +65,12 @@ def main():
                 # Map the radio button values back to numeric values (0 for No, 1 for Yes)
                 p_numeric = 1 if p == "Yes" else 0
                 k_numeric = 1 if k == "Yes" else 0
+                r_numeric = 1 if r == "Yes" else 0
                 humidity_numeric = 1 if humidity == "Yes" else 0
                 rainfall_numeric = 1 if rainfall == "Yes" else 0
 
                 # Include the BG customer reference in the input data if provided
-                input_data = [n, p_numeric, k_numeric, temperature, humidity_numeric]
+                input_data = [n, p_numeric, k_numeric, temperature, humidity_numeric,rainfall_numeric]
                 if humidity == "Yes":
                     input_data.append(bg_customer_reference)
                 input_data.extend([ph_value, rainfall_numeric])
