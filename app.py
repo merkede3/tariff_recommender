@@ -73,7 +73,7 @@ def main():
                 st.success(crop_output)  # Executes after successful button press
         
         with c2:
-            st_lottie(farmer, height=800, key="farmer")
+            st_lottie(farmer, height=650, width=1300, key="farmer")  # Adjust the width here
             st_lottie(plant, height=800, key="plant")
 
 # if __name__ == '__main__':
