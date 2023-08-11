@@ -37,7 +37,7 @@ def main():
         c1, c2 = st.columns((1, 1.5))
         with c1:
             st.title("Tariff Recommender")
-            st.header("Let's find you our best tariff:")
+            st.subheader("Let's find you our best tariff:")
 
 
         with c2:
