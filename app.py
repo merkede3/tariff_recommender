@@ -4,13 +4,12 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 
-
 st.set_page_config(page_title="Crop Recommender System", layout="wide")
 
 # --- Important Functions ---
 def load_url(url):
     r = requests.get(url)       # to access the animation link
-    if r.status_code !=200:
+    if r.status_code != 200:
         return None
     return r.json()
 
@@ -18,12 +17,10 @@ def load_url(url):
 plant = load_url("https://lottie.host/317802e0-e0a9-4715-9eaf-6ef6511ea52d/vvXUHRFJ2L.json")
 farmer = load_url("https://lottie.host/317802e0-e0a9-4715-9eaf-6ef6511ea52d/vvXUHRFJ2L.json")
 
-
 # --- Load The Model ---
 recommender = pickle.load(open('CropRecommender.sav', 'rb'))
 
 # --- Function that performs prediction ---
-
 def crs_output(input_data):
     input_array = np.array(input_data)
     final_input = input_array.reshape(1, -1)
@@ -40,18 +37,17 @@ def main():
             
             # -- Time to take user input --
             # Our model takes 7 parameters so we need 7 input fields
-
             n = st.number_input("Number of bedrooms", min_value=0, max_value=100)
             p = st.radio("Do you have a SMART meter?", ("No", "Yes"))
             ev_solar = st.radio("Do you have an electric vehicle or solar panel installed?", ("No", "Yes"))
-                # Change this part to capture EV and Solar Panel selection
-              if ev_solar == "Yes":
-                  ev_solar_options = st.multiselect("Select all that apply:", ["EV customer", "Solar panel customer", "Both - EV and Solar"])
-                  ev_customer = 1 if "EV customer" in ev_solar_options or "Both - EV and Solar" in ev_solar_options else 0
-                  solar_panel_customer = 1 if "Solar panel customer" in ev_solar_options or "Both - EV and Solar" in ev_solar_options else 0
-              else:
-                  ev_customer = 0
-                  solar_panel_customer = 0
+            # Change this part to capture EV and Solar Panel selection
+            if ev_solar == "Yes":
+                ev_solar_options = st.multiselect("Select all that apply:", ["EV customer", "Solar panel customer", "Both - EV and Solar"])
+                ev_customer = 1 if "EV customer" in ev_solar_options or "Both - EV and Solar" in ev_solar_options else 0
+                solar_panel_customer = 1 if "Solar panel customer" in ev_solar_options or "Both - EV and Solar" in ev_solar_options else 0
+            else:
+                ev_customer = 0
+                solar_panel_customer = 0
             k = st.radio("Do you have a strong preference for 100% green electricity?", ("No", "Yes"))
             temperature = st.number_input("What is your monthly consumption?", min_value=0, max_value=100)
             humidity = st.radio("Are you an existing BG customer?", ("No", "Yes"))
@@ -68,7 +64,6 @@ def main():
             crop_output = ""
             
             # --- Creating a button ---
-                       # --- Creating a button ---
             if st.button("Find The Best Tariff"):
                 # Map the radio button values back to numeric values (0 for No, 1 for Yes)
                 p_numeric = 1 if p == "Yes" else 0
@@ -78,7 +73,7 @@ def main():
                 rainfall_numeric = 1 if rainfall == "Yes" else 0
 
                 # Include the BG customer reference in the input data if provided
-                input_data = [n, p_numeric, k_numeric, temperature, humidity_numeric,rainfall_numeric]
+                input_data = [n, p_numeric, k_numeric, temperature, humidity_numeric, rainfall_numeric]
                 if humidity == "Yes":
                     input_data.append(bg_customer_reference)
                 input_data.extend([ph_value, rainfall_numeric])
@@ -91,5 +86,5 @@ def main():
             with st.container():
                 st_lottie(farmer, height=650, width=1300, key="farmer")  # Adjust the width here
 
-# if __name__ == '__main__':
-main()
+if __name__ == '__main__':
+    main()
