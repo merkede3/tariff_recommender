@@ -43,15 +43,16 @@ def main():
 
             n = st.number_input("Number of bedrooms", min_value=0, max_value=100)
             p = st.radio("Do you have a SMART meter?", ("No", "Yes"))
+            r = st.radio("Are you an EV customer", ("No", "Yes"))
             k = st.radio("Do you have a strong preference for 100% green electricity?", ("No", "Yes"))
             temperature = st.number_input("What is your monthly consumption?", min_value=0, max_value=100)
-            humidity = st.radio("Are you an existing BG customer?", ("No", "Yes"))
-            
             # Additional question for existing BG customers
             if humidity == "Yes":
-                bg_customer_reference = st.text_input("Please enter your BG customer reference:")
+                bg_customer_reference = st.text_input("Please enter your BG account number:")
             
-            ph_value = st.number_input("What bundle offers would interest you?", min_value=0, max_value=15)
+            ph_value_options = ["Homecare 100", "EV charging", "Hamzah is confused in life"]
+            ph_value = st.selectbox("What bundle offers would interest you?", ph_value_options)
+            
             rainfall = st.radio("Would you want to join BG Peaksave Sunday?", ("No", "Yes"))
 
             # --- Code for recommendation ---
@@ -61,14 +62,13 @@ def main():
                 # Map the radio button values back to numeric values (0 for No, 1 for Yes)
                 p_numeric = 1 if p == "Yes" else 0
                 k_numeric = 1 if k == "Yes" else 0
+                r_numeric = 1 if r == "Yes" else 0
                 humidity_numeric = 1 if humidity == "Yes" else 0
                 rainfall_numeric = 1 if rainfall == "Yes" else 0
 
                 # Include the BG customer reference in the input data if provided
-                input_data = [n, p_numeric, k_numeric, temperature, humidity_numeric, ph_value, rainfall_numeric]
-                if humidity == "Yes":
-                    input_data.append(bg_customer_reference)
-
+                input_data = [n, p_numeric, k_numeric, r_numeric, temperature, humidity_numeric, bg_customer_reference, ph_value, rainfall_numeric]
+                
                 crop_output = crs_output(input_data)
                 st.success(crop_output)  # Executes after successful button press
         
