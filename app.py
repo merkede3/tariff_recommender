@@ -43,7 +43,15 @@ def main():
 
             n = st.number_input("Number of bedrooms", min_value=0, max_value=100)
             p = st.radio("Do you have a SMART meter?", ("No", "Yes"))
-            r = st.radio("Are you an EV customer", ("No", "Yes"))
+            ev_solar = st.radio("Do you have an electric vehicle or solar panel installed?", ("No", "Yes"))
+                # Change this part to capture EV and Solar Panel selection
+              if ev_solar == "Yes":
+                  ev_solar_options = st.multiselect("Select all that apply:", ["EV customer", "Solar panel customer", "Both - EV and Solar"])
+                  ev_customer = 1 if "EV customer" in ev_solar_options or "Both - EV and Solar" in ev_solar_options else 0
+                  solar_panel_customer = 1 if "Solar panel customer" in ev_solar_options or "Both - EV and Solar" in ev_solar_options else 0
+              else:
+                  ev_customer = 0
+                  solar_panel_customer = 0
             k = st.radio("Do you have a strong preference for 100% green electricity?", ("No", "Yes"))
             temperature = st.number_input("What is your monthly consumption?", min_value=0, max_value=100)
             humidity = st.radio("Are you an existing BG customer?", ("No", "Yes"))
@@ -51,10 +59,10 @@ def main():
             if humidity == "Yes":
                 bg_customer_reference = st.text_input("Please enter your BG account number:")
             
-            ph_value_options = ["Homecare 100", "EV charging", "Hamzah is confused in life"]
+            ph_value_options = ["Homecare 100", "EV charging", "HAMZAH WILL BE GREAT ONE DAY"]
             ph_value = st.selectbox("What bundle offers would interest you?", ph_value_options)
             
-            rainfall = st.radio("Would you want to join BG Peaksave Sunday?", ("No", "Yes"))
+            rainfall = st.radio("Would you like to save half-price every Sunday by join BG Peaksave Sunday?*", ("No", "Yes"))
 
             # --- Code for recommendation ---
             crop_output = ""
