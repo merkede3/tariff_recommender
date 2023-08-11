@@ -15,9 +15,8 @@ def load_url(url):
     return r.json()
 
 # Animation Assests
-plant = load_url("https://assets9.lottiefiles.com/packages/lf20_xd9ypluc.json")
-farmer = load_url("https://assets7.lottiefiles.com/packages/lf20_sgn7zslb.json")
-
+plant = load_url("https://lottie.host/317802e0-e0a9-4715-9eaf-6ef6511ea52d/vvXUHRFJ2L.json")
+farmer = load_url("https://lottie.host/317802e0-e0a9-4715-9eaf-6ef6511ea52d/vvXUHRFJ2L.json")
 
 
 
@@ -39,7 +38,7 @@ def main():
     with st.container():
         c1, c2 = st.columns((1,1.5))
         with c1:
-            st.title("Crop Recommender System")
+            st.title("Tariff Recommender")
             st.write('Project objective: To build a predictive model to recommend the most suitable crops to grow based on various parameters. ')
             st.write('Problem Type: Multi-class Classification')
             st.write('Algorithm used: K-nearest Neighbors')
@@ -67,18 +66,18 @@ def main():
             #-- Time to take user input --
             # our model takes 7 parameters so we need 7 input fields
 
-            n = st.number_input("Nitrogen Level of Your field", min_value=0.0, max_value=100.0)
-            p = st.number_input("Phosphorus Level of Your field", min_value= 0.0, max_value= 100.0)
-            k =st.number_input("Potasium Level of Your field", min_value=0.0, max_value=100.0)
-            temperature =st.number_input("Average temperature(°C) in your area", min_value=0.0, max_value=100.0)
-            humidity =st.number_input("Relative humidity in %", min_value=0.0, max_value=100.0)
-            ph_value =st.number_input("Ph value of the soil", min_value=0.0, max_value=15.0)
-            rainfall =st.number_input("Average rainfall(in mm) in your area",  min_value=0.0)
+            n = st.number_input("Number of bedrooms", min_value=0.0, max_value=100.0)
+            p = st.number_input("Do you have a SMART meter?", min_value= 0.0, max_value= 100.0)
+            k =st.number_input("Do you have a strong preference for 100% green electricity?", min_value=0.0, max_value=100.0)
+            temperature =st.number_input("What is your monthly consumption?", min_value=0.0, max_value=100.0)
+            humidity =st.number_input("Are you an exisiting BG customer?", min_value=0.0, max_value=100.0)
+            ph_value =st.number_input("What bundle offers would interest you?", min_value=0.0, max_value=15.0)
+            rainfall =st.number_input("Would you want to join BG Peaksave Sunday",  min_value=0.0)
 
             # --- Code for reommendation ---
             crop_output = ""
             # --- creating a button ---
-            if st.button("Find The Crop"):
+            if st.button("Find The Best Tariff"):
                 crop_output = crs_output([n, p, k, temperature, humidity, ph_value, rainfall])
                 with col2:
                     st_lottie(plant, height = 800, key="plant")
