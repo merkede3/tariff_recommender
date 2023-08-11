@@ -37,7 +37,8 @@ def main():
         c1, c2 = st.columns((1, 1.5))
         with c1:
             st.title("Tariff Recommender")
-            st.write("Let's find you the best tariff:")
+            st.header("Let's find you our best tariff:")
+
 
         with c2:
             st_lottie(farmer, height=650, key="farmer")
@@ -45,7 +46,6 @@ def main():
     with st.container():
         col1, col2 = st.columns((1, 1))
         with col1:
-            st.header("Have Fun 😄")
             # -- Time to take user input --
             # Our model takes 7 parameters so we need 7 input fields
 
