@@ -57,17 +57,21 @@ def main():
 
             # --- Code for recommendation ---
             crop_output = ""
+            
             # --- Creating a button ---
+                       # --- Creating a button ---
             if st.button("Find The Best Tariff"):
                 # Map the radio button values back to numeric values (0 for No, 1 for Yes)
                 p_numeric = 1 if p == "Yes" else 0
                 k_numeric = 1 if k == "Yes" else 0
-                r_numeric = 1 if r == "Yes" else 0
                 humidity_numeric = 1 if humidity == "Yes" else 0
                 rainfall_numeric = 1 if rainfall == "Yes" else 0
 
                 # Include the BG customer reference in the input data if provided
-                input_data = [n, p_numeric, k_numeric, r_numeric, temperature, humidity_numeric, bg_customer_reference, ph_value, rainfall_numeric]
+                input_data = [n, p_numeric, k_numeric, temperature, humidity_numeric]
+                if humidity == "Yes":
+                    input_data.append(bg_customer_reference)
+                input_data.extend([ph_value, rainfall_numeric])
                 
                 crop_output = crs_output(input_data)
                 st.success(crop_output)  # Executes after successful button press
@@ -76,6 +80,6 @@ def main():
             # Place both animations in a separate container to avoid duplication
             with st.container():
                 st_lottie(farmer, height=650, width=1300, key="farmer")  # Adjust the width here
-                
+
 # if __name__ == '__main__':
 main()
