@@ -55,7 +55,7 @@ def main():
             if humidity == "Yes":
                 bg_customer_reference = st.text_input("Please enter your BG account number:")
             
-            ph_value_options = ["Homecare 100", "EV charging", "HAMZAH WILL BE GREAT ONE DAY"]
+            ph_value_options = ["None","Homecare 100", "EV charging", "HAMZAH WILL BE GREAT ONE DAY"]
             ph_value = st.selectbox("What bundle offers would interest you?", ph_value_options)
             
             rainfall = st.radio("Would you like to save half-price every Sunday by join BG Peaksave Sunday?*", ("No", "Yes"))
