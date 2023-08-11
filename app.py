@@ -33,17 +33,11 @@ def crs_output(input_data):
 
 def main():
     with st.container():
-        c1, c2 = st.columns((1, 1.5))
+        c1, c2 = st.columns((2, 1))
         with c1:
             st.title("Tariff Recommender")
             st.write("Let's find you the best tariff:")
-
-        with c2:
-            st_lottie(farmer, height=650, key="farmer")
-
-    with st.container():
-        col1, col2 = st.columns((1, 1))
-        with col1:
+            
             # -- Time to take user input --
             # Our model takes 7 parameters so we need 7 input fields
 
@@ -52,13 +46,13 @@ def main():
             k = st.radio("Do you have a strong preference for 100% green electricity?", ("No", "Yes"))
             temperature = st.number_input("What is your monthly consumption?", min_value=0, max_value=100)
             humidity = st.radio("Are you an existing BG customer?", ("No", "Yes"))
-                        # Additional question for existing BG customers
+            
+            # Additional question for existing BG customers
             if humidity == "Yes":
                 bg_customer_reference = st.text_input("Please enter your BG customer reference:")
+            
             ph_value = st.number_input("What bundle offers would interest you?", min_value=0, max_value=15)
             rainfall = st.radio("Would you want to join BG Peaksave Sunday?", ("No", "Yes"))
-            
-
 
             # --- Code for recommendation ---
             crop_output = ""
@@ -69,18 +63,18 @@ def main():
                 k_numeric = 1 if k == "Yes" else 0
                 humidity_numeric = 1 if humidity == "Yes" else 0
                 rainfall_numeric = 1 if rainfall == "Yes" else 0
-                
+
                 # Include the BG customer reference in the input data if provided
                 input_data = [n, p_numeric, k_numeric, temperature, humidity_numeric, ph_value, rainfall_numeric]
                 if humidity == "Yes":
                     input_data.append(bg_customer_reference)
 
                 crop_output = crs_output(input_data)
-                with col2:
-                    st_lottie(plant, height=800, key="plant")
-
                 st.success(crop_output)  # Executes after successful button press
+        
+        with c2:
+            st_lottie(farmer, height=650, key="farmer")
+            st_lottie(plant, height=800, key="plant")
 
 # if __name__ == '__main__':
 main()
-
