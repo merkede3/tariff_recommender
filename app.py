@@ -33,7 +33,7 @@ def crs_output(input_data):
 
 def main():
     with st.container():
-        c1, c2 = st.columns((2, 1))
+        c1, c2 = st.columns((1, 2))
         with c1:
             st.title("Tariff Recommender")
             st.write("Let's find you the best tariff:")
