@@ -3,7 +3,7 @@ import pickle
 import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
-
+'''
 st.set_page_config(page_title="Crop Recommender System", layout="wide")
 
 # --- Important Functions ---
