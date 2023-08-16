@@ -4,7 +4,7 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 
-st.set_page_config(page_title="Tariff Recommender System", layout="wide")
+st.set_page_config(page_title="Tariff Recommender System", layout="wide",page_icon="🌐", background_color="white")
 
 hide_streamlit_style = """
             <style>
