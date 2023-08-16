@@ -6,23 +6,13 @@ from streamlit_lottie import st_lottie
 
 st.set_page_config(page_title="Tariff Recommender System", layout="wide")
 
-# Hide the Streamlit main menu
-st.set_option('showMenu', False)
-
-# Apply custom CSS to set the background to white and hide the footer
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: white;
-    }
-    .viewerBadge_container__1QSob {
-        display: none;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 # --- Important Functions ---
 def load_url(url):
