@@ -14,6 +14,8 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
+st.image("https://pbs.twimg.com/media/FmmYA2YWYAApPRB.png")
+
 # --- Important Functions ---
 def load_url(url):
     r = requests.get(url)       # to access the animation link
