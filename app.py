@@ -15,6 +15,22 @@ hide_streamlit_style = """
 
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
+st.markdown(
+    """
+    <style>
+    body {
+        font-size: 18px;  /* Adjust the font size as needed */
+    }
+    /* Additional CSS for specific elements */
+    /* For example, increasing the font size for headers */
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 24px;  /* Adjust the font size as needed */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # --- Important Functions ---
 def load_url(url):
     r = requests.get(url)       # to access the animation link
