@@ -19,12 +19,12 @@ st.markdown(
     """
     <style>
     body {
-        font-size: 18px;  /* Adjust the font size as needed */
+        font-size: 31px;  /* Adjust the font size as needed */
     }
     /* Additional CSS for specific elements */
     /* For example, increasing the font size for headers */
     h1, h2, h3, h4, h5, h6 {
-        font-size: 24px;  /* Adjust the font size as needed */
+        font-size: 38px;  /* Adjust the font size as needed */
     }
     </style>
     """,
