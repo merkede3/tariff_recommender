@@ -12,9 +12,8 @@ hide_streamlit_style = """
             footer {visibility: hidden;}
             </style>
             """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
-st.image("https://pbs.twimg.com/media/FmmYA2YWYAApPRB.png")
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 # --- Important Functions ---
 def load_url(url):
@@ -47,6 +46,10 @@ def main():
             
             # -- Time to take user input --
             # Our model takes 7 parameters so we need 7 input fields
+            humidity = st.radio("Are you an existing BG customer?", ("No", "Yes"))
+            # Additional question for existing BG customers
+            if humidity == "Yes":
+                bg_customer_reference = st.text_input("Please enter your BG account number:")
             n = st.number_input("Number of bedrooms", min_value=0, max_value=100)
             p = st.radio("Do you have a SMART meter?", ("No", "Yes"))
             ev_solar = st.radio("Do you have an electric vehicle or solar panel installed?", ("No", "Yes"))
@@ -60,10 +63,7 @@ def main():
                 solar_panel_customer = 0
             k = st.radio("Do you have a strong preference for 100% green electricity?", ("No", "Yes"))
             temperature = st.number_input("What is your monthly consumption?", min_value=0, max_value=100)
-            humidity = st.radio("Are you an existing BG customer?", ("No", "Yes"))
-            # Additional question for existing BG customers
-            if humidity == "Yes":
-                bg_customer_reference = st.text_input("Please enter your BG account number:")
+
             
             ph_value_options = ["None","Homecare 100", "EV charging", "HAMZAH WILL BE GREAT ONE DAY"]
             ph_value = st.selectbox("What bundle offers would interest you?", ph_value_options)
