@@ -19,12 +19,12 @@ st.markdown(
     """
     <style>
     body {
-        font-size: 31px;  /* Adjust the font size as needed */
+        font-size: 41px;  /* Adjust the font size as needed */
     }
     /* Additional CSS for specific elements */
     /* For example, increasing the font size for headers */
     h1, h2, h3, h4, h5, h6 {
-        font-size: 38px;  /* Adjust the font size as needed */
+        font-size: 48px;  /* Adjust the font size as needed */
     }
     </style>
     """,
@@ -81,16 +81,16 @@ def main():
             temperature = st.number_input("What is your monthly consumption?", min_value=0, max_value=100)
 
             
-            ph_value_options = ["None","Homecare 100", "EV charging", "HAMZAH WILL BE GREAT ONE DAY"]
+            ph_value_options = ["None","Homecare 100", "EV charging", "Hamzah is kinda smart"]
             ph_value = st.selectbox("What bundle offers would interest you?", ph_value_options)
             
-            rainfall = st.radio("Would you like to save half-price every Sunday by join BG Peaksave Sunday?*", ("No", "Yes"))
+            rainfall = st.radio("Would you like to save half-price every Sunday by join BG Peaksave Sunday?*", ("Never", "Yes"))
 
             # --- Code for recommendation ---
             crop_output = ""
             
             # --- Creating a button ---
-            if st.button("Find The Best Tariff"):
+            if st.button("Find Me The Best Tariff"):
                 # Map the radio button values back to numeric values (0 for No, 1 for Yes)
                 p_numeric = 1 if p == "Yes" else 0
                 k_numeric = 1 if k == "Yes" else 0
